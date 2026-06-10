@@ -25,7 +25,7 @@ in
         then null
         else
           lib.pipe (elemAt list 4) [
-            (lib.flip elemAt 1)
+            (raw: if length raw > 0 && head raw == "quote" then elemAt raw 1 else raw)
             # I don't expect there is a package entry that lacks a version,
             # so I don't care emptyListToNull for now.
             (alistToAttrs {emptyListToNull = false;})
