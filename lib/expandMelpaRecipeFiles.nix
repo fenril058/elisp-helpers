@@ -88,7 +88,7 @@ with import ./utils.nix {inherit lib;};
           result = {};
         }
         (
-          if initialSpec == null
+          if initialSpec == null || initialSpec == [ ]
           then defaultFilesSpec
           else if head initialSpec == ":defaults"
           then defaultFilesSpec ++ tail initialSpec
