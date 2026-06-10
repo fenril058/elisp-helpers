@@ -21,6 +21,14 @@ in
           "doc/hello.info" = "hello.info";
         };
       };
+      testEmptySpecUsesDefault = {
+        expr = expandMelpaRecipeFiles ./. [ ];
+        expected = {
+          "hello.el" = "hello.el";
+          "hello2.el" = "hello2.el";
+          "doc/hello.info" = "hello.info";
+        };
+      };
 
       testNestedExpansion1 = {
         expr = expandMelpaRecipeFiles ./nested1 recipe3.files;
