@@ -5,7 +5,7 @@
   ...
 }:
 with builtins; let
-  repoPath = split "/" package.repo;
+  repoComponents = filter isString (split "/" package.repo);
   vcAttrs = lib.filterAttrs (_: v: v != null) {
     rev = commit;
     ref = branch;
@@ -57,22 +57,22 @@ in
   then
     buildGitHubAttrs
     {
-      owner = elemAt repoPath 0;
-      repo = elemAt repoPath 2;
+      owner = lib.concatStringsSep "/" (lib.init repoComponents);
+      repo = lib.last repoComponents;
     }
   else if fetcher == "gitlab"
   then
     buildGitlabAttrs
     {
-      owner = elemAt repoPath 0;
-      repo = elemAt repoPath 2;
+      owner = lib.concatStringsSep "/" (lib.init repoComponents);
+      repo = lib.last repoComponents;
     }
   else if fetcher == "sourcehut"
   then
     buildSourceHutAttrs
     {
-      owner = "~${elemAt repoPath 0}";
-      repo = elemAt repoPath 2;
+      owner = "~${lib.concatStringsSep "/" (lib.init repoComponents)}";
+      repo = lib.last repoComponents;
     }
   else if fetcher == "codeberg"
   then
