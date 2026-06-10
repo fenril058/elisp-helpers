@@ -25,7 +25,7 @@ with builtins; let
       else url;
   toHgUrl = url:
     assert isString url;
-      if match "hg\+.+" url == null
+      if match "hg[+].+" url == null
       then "hg+" + url
       else url;
 in
