@@ -22,4 +22,26 @@ in
         extras = "Clara";
       };
     };
+    testPkgUnquotedRequires = {
+      expr = parsePkg ''(define-package "foo" "1.0" "desc" ((emacs "27.1")))'';
+      expected = {
+        ename = "foo";
+        version = "1.0";
+        summary = "desc";
+        packageRequires = {
+          emacs = "27.1";
+        };
+      };
+    };
+    testPkgVectorRequires = {
+      expr = parsePkg ''(define-package "foo" "1.0" "desc" [(emacs "27.1")])'';
+      expected = {
+        ename = "foo";
+        version = "1.0";
+        summary = "desc";
+        packageRequires = {
+          emacs = "27.1";
+        };
+      };
+    };
   }
