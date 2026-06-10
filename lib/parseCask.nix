@@ -22,7 +22,7 @@ in
   // {
     dependencies = dependsOn toplevels;
     development = {
-      dependencies = dependsOn (lookup "development" toplevels);
+      dependencies = dependsOn (let d = lookup "development" toplevels; in if d == null then [ ] else d);
     };
     files = lookup "files" toplevels;
     sources = lib.pipe toplevels [

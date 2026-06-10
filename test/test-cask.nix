@@ -34,4 +34,8 @@ in
           "shell-split-string"
         ];
       };
+      testNoDevelopmentSection = {
+        expr = (parseCask "(source gnu)\n(depends-on \"dash\")").development.dependencies;
+        expected = [ ];
+      };
     }
