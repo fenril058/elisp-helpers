@@ -23,10 +23,10 @@ This is a fork of `emacs-twist/elisp-helpers`.
 
 - **`master`** — a pure mirror of `upstream/master`. Do **not** commit here;
   only fast-forward it from upstream.
-- **`develop`** — personal integration branch carrying all local changes.
+- **`local`** — personal integration branch carrying all local changes.
   Rebase onto `master` when upstream moves.
 - **topic branches** (`fix/...`, `feat/...`, `docs/...`) — branched off
-  `master`, one change each, kept PR-ready for upstream. Merged into `develop`.
+  `master`, one change each, kept PR-ready for upstream. Merged into `local`.
 
 `upstream` remote: `https://github.com/emacs-twist/elisp-helpers`.
 
